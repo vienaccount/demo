@@ -1,6 +1,3 @@
-# Standard simple non circular doubly linked Linked List implementation.
-# @author Vincent Tran
-# @created Oct 17, 2023
 import unittest
 import json
 from flask import Flask, Blueprint, redirect, views, abort as flask_abort
