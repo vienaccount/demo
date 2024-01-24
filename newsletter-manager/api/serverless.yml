@@ -1,0 +1,45 @@
+# serverless.yml
+
+service: wdc-newsletter-api
+
+plugins:
+  - serverless-plugin-monorepo
+  - serverless-esbuild
+  - serverless-domain-manager
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+
+  customDomain:
+    domainName: newsletter-api.webdevcody.com
+    basePath: ""
+    stage: ${self:provider.stage}
+    certificateName: "newsletter-api.webdevcody.com"
+    createRoute53Record: false
+    endpointType: regional
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: prod
+  region: us-east-1
+
+  environment:
+    ACCESS_KEY: ${env:ACCESS_KEY}
+    SECRET_KEY: ${env:SECRET_KEY}
+    REGION: ${env:REGION}
+    SES_ENDPOINT: ${env:SES_ENDPOINT}
+    DYNAMO_ENDPOINT: ${env:DYNAMO_ENDPOINT}
+    HOST_NAME: ${env:HOST_NAME}
+    TABLE_NAME: ${env:TABLE_NAME}
+    RECAPTCHA_SECRET: ${env:RECAPTCHA_SECRET}
+
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - http:
+          method: ANY
+          path: /{proxy+}

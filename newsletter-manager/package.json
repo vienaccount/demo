@@ -1,0 +1,33 @@
+{
+  "name": "newsletter-manager",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "deploy:api": "yarn workspace @wdc-newsletter/api deploy"
+  },
+  "workspaces": {
+    "packages": [
+      "business",
+      "ui",
+      "e2e",
+      "api",
+      "scripts"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdevcody/newsletter-manager.git"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webdevcody/newsletter-manager/issues"
+  },
+  "homepage": "https://github.com/webdevcody/newsletter-manager#readme",
+  "devDependencies": {
+    "cypress": "^12.5.0"
+  }
+}
